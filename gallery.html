@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Completed Residential Projects | Jurassic Spark Electric</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0f0f0f;
+  color: #eaeaea;
+  text-align: center;
+}
+
+header {
+  padding: 30px 20px 10px;
+}
+
+header h1 {
+  font-size: 26px;
+  margin: 0 0 15px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #00aaff;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.gallery-wrapper {
+  padding: 0 15px 50px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+}
+
+.gallery-img {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.gallery-img:hover {
+  transform: scale(1.03);
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html" class="back-link">← Return to Home</a>
+  <h1>Completed Residential Electrical Projects</h1>
+</header>
+
+<div class="gallery-wrapper">
+  <div class="gallery-grid" id="gallery"></div>
+</div>
+
+<div id="lightbox" class="lightbox">
+  <img id="lightbox-img" alt="Expanded Project Image">
+</div>
+
+<script>
+const gallery = document.getElementById('gallery');
+const totalImages = 39; // Change this number if you add more later
+
+for (let i = 1; i <= totalImages; i++) {
+  const img = document.createElement('img');
+  img.src = `assets/jurassic-spark-${i}.jpg`;
+  img.alt = `Jurassic Spark Electrical Project ${i}in Mineral Wells`;
+  img.classList.add('gallery-img');
+  img.loading = "lazy";
+  
+
+  img.addEventListener('click', () => {
+    document.getElementById('lightbox').style.display = 'flex';
+    document.getElementById('lightbox-img').src = img.src;
+  });
+
+  gallery.appendChild(img);
+}
+
+document.getElementById('lightbox').addEventListener('click', () => {
+  document.getElementById('lightbox').style.display = 'none';
+});
+</script>
+
+</body>
+</html>
