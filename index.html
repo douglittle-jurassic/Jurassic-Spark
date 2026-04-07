@@ -287,11 +287,78 @@ section {
   position: relative;
   overflow: hidden;
 }
+/* SOCIAL BUTTON LAYOUT */
+.social-buttons {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  z-index: 1;
+}
+
+/* BUTTON BASE (dark, clean) */
+.social-btn {
+  width: 65px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a1a;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ICON */
 .social-btn img {
-  width: 35px;
-  height: 35px;
+  width: 28px;
+  height: 28px;
   opacity: 0.85;
   transition: all 0.25s ease;
+}
+
+/* ELECTRIC HOVER */
+.social-btn:hover {
+  background: #0f0f0f;
+  transform: translateY(-5px) scale(1.08);
+  box-shadow:
+    0 0 12px rgba(0,170,255,0.9),
+    0 0 30px rgba(0,170,255,0.6),
+    0 0 60px rgba(0,170,255,0.35);
+}
+
+/* ICON GLOW */
+.social-btn:hover img {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px #00aaff);
+}
+
+/* LIGHTNING SWEEP */
+.social-btn::after {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 2px;
+  background: #00aaff;
+  top: 50%;
+  left: -120%;
+  transform: rotate(25deg);
+  opacity: 0;
+}
+
+.social-btn:hover::after {
+  animation: lightningSweep 0.4s linear;
+  opacity: 1;
+}
+
+@keyframes lightningSweep {
+  0% { left: -120%; }
+  100% { left: 120%; }
 }
 
 .social-btn:hover img {
@@ -594,52 +661,57 @@ setInterval(() => {
 </script>
 
 <script>
-const reviews = [
-  {
-    text: "Doug upgraded our electrical panel and cleaned up the old wiring. He was professional, punctual, and honest.",
-    author: "- Sandra Groom"
-  },
-  {
-    text: "Doug, owner and Master Electrician of Jurassic Spark is amazing. He is polite, considerate, his work ethic is impecable. He installed recessed lighting for me and I couldn't be happier. For all your electric needs big or small, in the Parker/Palo Pinto counties and beyond, Doug is your guy.",
-    author: "- Heather VanDeren"
-  },
-  {
-    text: "Doug, thank you for taking care of our needs so quickly and so professionally. We highly recommend your services to anyone that needs your electrical services and knowledge.",
-    author: "- Erik and Rhonda Anders"
-  }
+document.addEventListener("DOMContentLoaded", function () {
+
+  const reviews = [
     {
-    text: "The technician came out for an estimate to our commercial business. He was professional and very courteous. We thought his quote was fair and reasonable. He was on site and finished the work within a couple days. We were so pleased with his work we asked him back to complete another list of tasks we had been putting off as well. His crew was respectful of our work environment and cleaned up after themselves when done. We definitely will have them back for any future electrical needs.",
-    author: "- Amy Frye, M+R Roofing"
-  },
+      text: "Doug upgraded our electrical panel and cleaned up the old wiring. He was professional, punctual, and honest.",
+      author: "Sandra Groom"
+    },
     {
-    text: "Very professional and treats you like family. Does amazing work in a timely manner.",
-    author: "- Niki Minter"
-  },
-        {
-    text: "Had some new flush mount lights installed. Doug was very professional and treated me with respect and answered all my questions",
-    author: "- Frank Wright"
-  },
-];
+      text: "Doug, owner and Master Electrician of Jurassic Spark is amazing. He is polite, considerate, his work ethic is impeccable. He installed recessed lighting for me and I couldn't be happier.",
+      author: "Heather VanDeren"
+    },
+    {
+      text: "Doug, thank you for taking care of our needs so quickly and professionally. We highly recommend your services.",
+      author: "Erik and Rhonda Anders"
+    },
+    {
+      text: "Professional, courteous, and fair pricing. Completed work quickly and we will absolutely use them again.",
+      author: "Amy Frye, M+R Roofing"
+    },
+    {
+      text: "Very professional and treats you like family. Does amazing work in a timely manner.",
+      author: "Niki Minter"
+    },
+    {
+      text: "Had new lights installed. Doug was professional, respectful, and answered all my questions.",
+      author: "Frank Wright"
+    }
+  ];
 
-let reviewIndex = 0;
+  let reviewIndex = 0;
 
-const reviewText = document.getElementById("review-text");
-const reviewAuthor = document.getElementById("review-author");
+  const reviewText = document.getElementById("review-text");
+  const reviewAuthor = document.getElementById("review-author");
 
-setInterval(() => {
-  reviewText.style.opacity = 0;
-  reviewAuthor.style.opacity = 0;
+  setInterval(() => {
+    reviewText.style.opacity = 0;
+    reviewAuthor.style.opacity = 0;
 
-  setTimeout(() => {
-    reviewIndex = (reviewIndex + 1) % reviews.length;
-    reviewText.textContent = `"${reviews[reviewIndex].text}"`;
-    reviewAuthor.textContent = `- ${reviews[reviewIndex].author}`;
+    setTimeout(() => {
+      reviewIndex = (reviewIndex + 1) % reviews.length;
 
-    reviewText.style.opacity = 1;
-    reviewAuthor.style.opacity = 1;
-  }, 400);
+      reviewText.textContent = `"${reviews[reviewIndex].text}"`;
+      reviewAuthor.textContent = `- ${reviews[reviewIndex].author}`;
 
-}, 5000);
+      reviewText.style.opacity = 1;
+      reviewAuthor.style.opacity = 1;
+    }, 400);
+
+  }, 5000);
+
+});
 </script>
 
   
