@@ -210,6 +210,84 @@ section {
   transform: translateY(0);
 }
 
+
+
+.review-box {
+  max-width: 750px;
+  margin: 50px auto 0;
+  padding: 35px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 15px rgba(0,0,0,0.6),
+    inset 0 0 10px rgba(255,255,255,0.03);
+  transition: all 0.4s ease;
+}
+
+
+.review-box::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle, rgba(0,170,255,0.08) 0%, transparent 65%);
+  animation: reviewPulse 6s ease-in-out infinite;
+}
+
+@keyframes reviewPulse {
+  0%,100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+
+.review-box p {
+  font-size: 19px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+
+.review-box strong {
+  color: #00aaff;
+  font-size: 16px;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 0 6px rgba(0,170,255,0.6);
+}
+
+
+#review-text,
+#review-author {
+  transition: opacity 0.4s ease;
+}
+
+.review-box p {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.review-box strong {
+  color: #00aaff;
+}
+
+.review-box:hover {
+  box-shadow:
+    0 0 15px rgba(0,170,255,0.4),
+    0 0 35px rgba(0,170,255,0.25),
+    inset 0 0 10px rgba(255,255,255,0.05);
+  transform: translateY(-3px);
+}
+  
+.social-proof {
+  background: linear-gradient(180deg, #141414 0%, #0f0f0f 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -385,19 +463,45 @@ Licensed Electrical Contractor – TECL #41288
 
 <section class="services">
   <h2>What Homeowners Are Saying</h2>
-  <div class="service-grid">
-    <div class="service-card">
-      <p>"Doug upgraded our electrical panel and cleaned up the old wiring. He was professional, punctual, and honest."</p>
-      <strong>- Sandra Groom</strong>
-    </div>
 
-    <div class="service-card">
-      <p>"Fast response during a power issue. They explained everything clearly and fixed it right."</p>
-      <strong>- Frank Wright</strong>
-    </div>
+  <div class="review-box">
+    <p id="review-text">
+      "Doug upgraded our electrical panel and cleaned up the old wiring. He was professional, punctual, and honest."
+    </p>
+    <strong id="review-author">- Sandra Groom</strong>
+  </div>
+
+</section>
+
+
+<section class="social-proof">
+  <h2>Find & Follow Jurassic Spark</h2>
+
+  <div class="social-buttons">
+
+    <a href="https://www.facebook.com/jurassicsparkelectric" target="_blank" rel="noopener noreferrer" class="social-btn">
+      <img src="https://cdn.simpleicons.org/facebook/1c1c1c" alt="Facebook">
+    </a>
+
+    <a href="https://share.google/8dANyvOeNLbAVVrIT" target="_blank" rel="noopener noreferrer" class="social-btn">
+      <img src="https://cdn.simpleicons.org/google/1c1c1c" alt="Google">
+    </a>
+
+    <a href="https://www.yelp.com/biz/jurassic-spark-electrical-services-millsap?override_cta=Request+quote+%26+availability" target="_blank" rel="noopener noreferrer" class="social-btn">
+      <img src="https://cdn.simpleicons.org/yelp/1c1c1c" alt="Yelp">
+    </a>
+
   </div>
 </section>
 
+
+
+
+
+
+
+
+  
 <section id="contact">
   <h2>Request Service</h2>
 
@@ -479,6 +583,58 @@ setInterval(() => {
 }, 4000);
 </script>
 
+<script>
+const reviews = [
+  {
+    text: "Doug upgraded our electrical panel and cleaned up the old wiring. He was professional, punctual, and honest.",
+    author: "Sandra Groom"
+  },
+  {
+    text: "Doug, owner and Master Electrician of Jurassic Spark is amazing. He is polite, considerate, his work ethic is impecable. He installed recessed lighting for me and I couldn't be happier. For all your electric needs big or small, in the Parker/Palo Pinto counties and beyond, Doug is your guy.",
+    author: "Heather VanDeren"
+  },
+  {
+    text: "Doug, thank you for taking care of our needs so quickly and so professionally. We highly recommend your services to anyone that needs your electrical services and knowledge.",
+    author: "Erik and Rhonda Anders"
+  }
+    {
+    text: "The technician came out for an estimate to our commercial business. He was professional and very courteous. We thought his quote was fair and reasonable. He was on site and finished the work within a couple days. We were so pleased with his work we asked him back to complete another list of tasks we had been putting off as well. His crew was respectful of our work environment and cleaned up after themselves when done. We definitely will have them back for any future electrical needs.",
+    author: "Amy Frye, M+R Roofing"
+  },
+    {
+    text: "Very professional and treats you like family. Does amazing work in a timely manner.",
+    author: "Niki Minter"
+  },
+        {
+    text: "Had some new flush mount lights installed. Doug was very professional and treated me with respect and answered all my questions",
+    author: "Frank Wright"
+  },
+];
+
+let reviewIndex = 0;
+
+const reviewText = document.getElementById("review-text");
+const reviewAuthor = document.getElementById("review-author");
+
+setInterval(() => {
+  reviewText.style.opacity = 0;
+  reviewAuthor.style.opacity = 0;
+
+  setTimeout(() => {
+    reviewIndex = (reviewIndex + 1) % reviews.length;
+    reviewText.textContent = `"${reviews[reviewIndex].text}"`;
+    reviewAuthor.textContent = `- ${reviews[reviewIndex].author}`;
+
+    reviewText.style.opacity = 1;
+    reviewAuthor.style.opacity = 1;
+  }, 400);
+
+}, 5000);
+</script>
+
+  
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v67327c56f0bb4ef8b305cae61679db8f1769101564043" integrity="sha512-rdcWY47ByXd76cbCFzznIcEaCN71jqkWBBqlwhF1SY7KubdLKZiEGeP7AyieKZlGP9hbY/MhGrwXzJC/HulNyg==" data-cf-beacon='{"version":"2024.11.0","token":"e73ef7cd35f04d2c8ae6ed2f837f729b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+
+
 </body>
 </html>
