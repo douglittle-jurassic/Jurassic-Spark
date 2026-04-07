@@ -290,10 +290,13 @@ section {
 .social-btn img {
   width: 26px;
   height: 26px;
-  max-width: 26px;
-  max-height: 26px;
-  object-fit: contain;
-  display: block;
+  opacity: 0.85;
+  transition: all 0.25s ease;
+}
+
+.social-btn:hover img {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px #00aaff);
 }
 </style>
 
@@ -487,15 +490,15 @@ Licensed Electrical Contractor – TECL #41288
   <div class="social-buttons">
 
     <a href="https://www.facebook.com/jurassicsparkelectric" target="_blank" rel="noopener noreferrer" class="social-btn">
-      <img src="https://cdn.simpleicons.org/facebook/1c1c1c" alt="Facebook">
+      <img src="https://cdn.simpleicons.org/facebook/00aaff" alt="Facebook">
     </a>
 
     <a href="https://share.google/8dANyvOeNLbAVVrIT" target="_blank" rel="noopener noreferrer" class="social-btn">
-      <img src="https://cdn.simpleicons.org/google/1c1c1c" alt="Google">
+      <img src="https://cdn.simpleicons.org/google/00aaff" alt="Google">
     </a>
 
     <a href="https://www.yelp.com/biz/jurassic-spark-electrical-services-millsap?override_cta=Request+quote+%26+availability" target="_blank" rel="noopener noreferrer" class="social-btn">
-      <img src="https://cdn.simpleicons.org/yelp/1c1c1c" alt="Yelp">
+      <img src="https://cdn.simpleicons.org/yelp/00aaff" alt="Yelp">
     </a>
 
   </div>
