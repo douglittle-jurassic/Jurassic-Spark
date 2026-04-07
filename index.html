@@ -38,10 +38,62 @@ section {
 
 h1, h2, h3 { margin: 0; }
 
-  /* SECTION TITLES - BRAND COLOR */
+/* === ELECTRIFIED SECTION TITLES === */
+
 section h2 {
   color: #00aaff;
-  text-shadow: 0 0 6px rgba(0,170,255,0.5);
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+
+  /* base glow */
+  text-shadow:
+    0 0 6px rgba(0,170,255,0.7),
+    0 0 12px rgba(0,170,255,0.4);
+
+  /* flicker on load */
+  animation: electricFlicker 1.5s ease-in-out;
+}
+
+/* glowing underline */
+section h2::after {
+  content: "";
+  display: block;
+  margin: 10px auto 0;
+  width: 60%;
+  height: 2px;
+  background: #00aaff;
+
+  box-shadow:
+    0 0 6px rgba(0,170,255,0.8),
+    0 0 12px rgba(0,170,255,0.5);
+
+  border-radius: 2px;
+
+  /* slight grow-in effect */
+  transform: scaleX(0);
+  transform-origin: center;
+  animation: underlineReveal 0.8s ease forwards;
+}
+
+/* underline animation */
+@keyframes underlineReveal {
+  to { transform: scaleX(1); }
+}
+
+/* subtle electric flicker */
+@keyframes electricFlicker {
+  0% { opacity: 0.3; text-shadow: none; }
+  20% { opacity: 1; }
+  40% { opacity: 0.6; }
+  60% { opacity: 1; }
+  80% { opacity: 0.85; }
+  100% {
+    opacity: 1;
+    text-shadow:
+      0 0 6px rgba(0,170,255,0.7),
+      0 0 12px rgba(0,170,255,0.4);
+  }
 }
 /* HERO */
 
